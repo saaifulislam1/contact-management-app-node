@@ -9,7 +9,7 @@ const getContacts = asyncHandler(async (req, res) => {
 // Create New  contacts
 // @acess public
 // route -> POST /api/contacts
-const createContact = asyncasyncHandler((req, res) => {
+const createContact = asyncHandler((req, res) => {
   console.log(req.body);
   const { name, email, phone } = req.body;
   if (!name || !email || !phone) {
