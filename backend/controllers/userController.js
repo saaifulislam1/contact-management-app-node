@@ -26,7 +26,7 @@ const registerUser = asyncHandler(async (req, res) => {
   });
   console.log(user, "User Created");
   if (user) {
-    res.status(201).json({ _id: user.id, email: user.email });
+    res.status(200).json({ _id: user.id, email: user.email });
   } else {
     res.status(400);
     throw new Error("User data is not valid");
@@ -56,7 +56,7 @@ const loginUser = asyncHandler(async (req, res) => {
         },
       },
       process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: "4m" }
+      { expiresIn: "15m" }
     );
     res.status(200).json({ accessToken });
   } else {

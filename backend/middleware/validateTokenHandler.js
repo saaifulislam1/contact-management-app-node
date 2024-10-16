@@ -9,12 +9,6 @@ const validateToken = asyncHandler(async (req, res, next) => {
   if (authHeader && authHeader.startsWith("Bearer")) {
     // Extract token from the Bearer scheme
     token = authHeader.split(" ")[1];
-
-    if (!token) {
-      res.status(401);
-      throw new Error("User is not authorized or token has expired");
-    }
-
     // Verify token with the secret key
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
       if (err) {
@@ -25,6 +19,10 @@ const validateToken = asyncHandler(async (req, res, next) => {
       req.user = decoded.user;
       next();
     });
+    if (!token) {
+      res.status(401);
+      throw new Error("User is not authorized or token has expired");
+    }
   } else {
     res.status(401);
     throw new Error("User is not authorized or token has expired");
