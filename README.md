@@ -22,11 +22,8 @@ This project is a Node.js application built using the [Express.js](https://expre
 
 - [Installation](#installation)
 - [API Documentation](#api-documentation)
-- [Configuration](#configuration)
 - [Running the Application](#running-the-application)
-- [Testing](#testing)
-- [Contributing](#contributing)
-- [License](#license)
+
 
 ---
 
@@ -64,7 +61,7 @@ To run this project locally, follow these steps:
    CONNECTION_STRING=
    ACCESS_TOKEN_SECRET=
 
-##Running the Application
+###running-the-application
 To start the application, use the following commands:
  ```bash
     npm run dev
