@@ -1,11 +1,11 @@
-# Node.js Express API Project
+# Node.js Express Contact manager API Project
 
 ![Node.js](https://img.shields.io/badge/Node.js-v16.13.1-green)
 ![Express.js](https://img.shields.io/badge/Express-v4.17.1-blue)
 
 ## Overview
 
-This project is a Node.js application built using the [Express.js](https://expressjs.com/) framework. The app provides a set of APIs designed for [Insert purpose: e.g., user management, data processing, etc.]. The APIs are organized in RESTful structure, supporting various operations such as Create, Read, Update, and Delete (CRUD).
+This project is a Node.js application built using the [Express.js](https://expressjs.com/) framework. The app provides a set of APIs designed for Contact management app. The APIs are organized in a RESTful structure, supporting various operations such as Create, Read, Update, and Delete (CRUD).
 
 ### Key Features
 
@@ -13,7 +13,7 @@ This project is a Node.js application built using the [Express.js](https://expre
 - Modular and scalable code structure
 - Environment configuration for development and production
 - API error handling and validation
-- [Optional: Authentication/Authorization (JWT or OAuth)]
+-  Authentication with JWT 
 - Well-documented API routes with request/response samples
 
 ---
@@ -43,12 +43,12 @@ To run this project locally, follow these steps:
 
 1. **Clone the repository**:
     ```bash
-    git clone https://github.com/yourusername/yourproject.git
+    git clone git@github.com:saaifulislam1/contact-management-app-node.git
     ```
 
 2. **Navigate to the project directory**:
     ```bash
-    cd yourproject
+    cd backend
     ```
 
 3. **Install dependencies**:
@@ -60,7 +60,14 @@ To run this project locally, follow these steps:
    Create a `.env` file in the root directory and configure the following:
    
    ```bash
-   PORT=3000
-   DATABASE_URL=mongodb://localhost:27017/myapp
-   JWT_SECRET=mysecretkey
-   NODE_ENV=development
+   PORT=5001
+   CONNECTION_STRING=
+   ACCESS_TOKEN_SECRET=
+
+##Running the Application
+To start the application, use the following commands:
+ ```bash
+    npm run dev
+    ```
+
+
