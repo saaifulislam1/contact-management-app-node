@@ -61,7 +61,7 @@ To run this project locally, follow these steps:
    CONNECTION_STRING=
    ACCESS_TOKEN_SECRET=
 
-###running-the-application
+## running-the-application
 To start the application, use the following commands:
  ```bash
     npm run dev
