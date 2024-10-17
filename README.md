@@ -61,10 +61,28 @@ To run this project locally, follow these steps:
    CONNECTION_STRING=
    ACCESS_TOKEN_SECRET=
 
-## running-the-application
+## Running-the-application
 To start the application, use the following commands:
  ```bash
     npm run dev
-    ```
+
+ ```
+
+## API Documentation
+
+Here is an overview of the API endpoints available in this project. Each endpoint supports different HTTP methods.
+
+### Endpoints
+
+| HTTP Method | Endpoint                     | Description              | Request Body                        | Response    |
+|-------------|---------------------|-----------------------------------|------------------------------------=|---------------------|----------------
+| `POST`       | `/api/users/registers`      | Register User            | JSON Object                         | Success/Fail     |
+| `POST`       | `/api/users/login`          | Login User               | JSON Object                         | JSON Object      |
+| `GET`        | `/api/users/current`        | Get Current User         | Bearer Token in Header              | JSON Object      |
+| `POST`       | `/api/contacts`             | Post a contact           | JSON Object                         | JSON Object      |
+| `GET`        | `api/contacts/`             | Get all contacts         | None                                | JSON Array       |
+| `DELETE`     | `api/contacts/:id`          | Delete a Contact by ID   | None                                | Success/Fail     |
+| `PUT`        | `api/contacts/:id`          | Update a Contact by ID   | None                                | Success/Fail     |
+| `GET`        | `api/contacts/:id`          | GET a Contact by ID      | None                                | JSON Object      |
 
 
