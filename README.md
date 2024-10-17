@@ -70,19 +70,20 @@ To start the application, use the following commands:
 
 ## API Documentation
 
-Here is an overview of the API endpoints available in this project. Each endpoint supports different HTTP methods.
+Below is an overview of the available API endpoints and their descriptions.
 
 ### Endpoints
 
-| HTTP Method | Endpoint                     | Description              | Request Body                        | Response    |
-|-------------|---------------------|-----------------------------------|------------------------------------=|---------------------|----------------
-| `POST`       | `/api/users/registers`      | Register User            | JSON Object                         | Success/Fail     |
-| `POST`       | `/api/users/login`          | Login User               | JSON Object                         | JSON Object      |
-| `GET`        | `/api/users/current`        | Get Current User         | Bearer Token in Header              | JSON Object      |
-| `POST`       | `/api/contacts`             | Post a contact           | JSON Object                         | JSON Object      |
-| `GET`        | `api/contacts/`             | Get all contacts         | None                                | JSON Array       |
-| `DELETE`     | `api/contacts/:id`          | Delete a Contact by ID   | None                                | Success/Fail     |
-| `PUT`        | `api/contacts/:id`          | Update a Contact by ID   | None                                | Success/Fail     |
-| `GET`        | `api/contacts/:id`          | GET a Contact by ID      | None                                | JSON Object      |
+| HTTP Method | Endpoint               | Description               | Request Body            | Response        |
+|-------------|------------------------|---------------------------|-------------------------|-----------------|
+| `POST`      | `/api/users/register`  | Register a new user       | JSON Object             | Success/Fail    |
+| `POST`      | `/api/users/login`     | User login                | JSON Object             | JSON Object     |
+| `GET`       | `/api/users/current`   | Get current user details  | Bearer Token in Header  | JSON Object     |
+| `POST`      | `/api/contacts`        | Create a new contact      | JSON Object             | JSON Object     |
+| `GET`       | `/api/contacts/`       | Get all contacts          | None                    | JSON Array      |
+| `DELETE`    | `/api/contacts/:id`    | Delete a contact by ID    | None                    | Success/Fail    |
+| `PUT`       | `/api/contacts/:id`    | Update a contact by ID    | JSON Object             | Success/Fail    |
+| `GET`       | `/api/contacts/:id`    | Get a contact by ID       | None                    | JSON Object     |
+
 
 
