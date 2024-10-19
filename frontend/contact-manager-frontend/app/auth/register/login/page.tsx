@@ -1,24 +1,21 @@
 "use client";
-
-import { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
-import { useRouter } from "next/navigation";
-
-const LoginPage = () => {
-  const searchParams = useSearchParams();
-  const router = useRouter();
+import { useState } from "react";
+const Login = () => {
+  //   const searchParams = useSearchParams();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [message, setMessage] = useState("");
 
   // Handling Message from Registration page Redirection
-  useEffect(() => {
-    const successMessage = searchParams.get("message");
-    if (successMessage === "registration-success") {
-      setMessage("Registration successful! Please log in.");
-    }
-  }, [searchParams]);
+  //   useEffect(() => {
+  //     if (typeof window !== "undefined") {
+  //       const successMessage = searchParams.get("message");
+  //       if (successMessage === "registration-success") {
+  //         setMessage("Registration successful! Please log in.");
+  //       }
+  //     }
+  //   }, [searchParams]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -38,11 +35,13 @@ const LoginPage = () => {
 
       if (response.ok) {
         // Store JWT token in localStorage
-        localStorage.setItem("accessToken", data.accessToken);
-        document.cookie = `accessToken=${data.accessToken}; path=/; max-age=60`;
+        if (typeof window !== "undefined") {
+          localStorage.setItem("accessToken", data.accessToken);
+          document.cookie = `accessToken=${data.accessToken}; path=/; max-age=60`;
 
-        // Redirect to dashboard or home page
-        window.location.href = "/dashboard";
+          // Redirect to dashboard or home page
+          window.location.href = "/dashboard";
+        }
       } else {
         setError(data.message || "Login failed");
       }
@@ -53,38 +52,6 @@ const LoginPage = () => {
   };
 
   return (
-    // <div>
-    //   <br />
-    //   <form onSubmit={handleSubmit} className="mt-[100px]">
-    //     <div>
-    //       <span className="badge p-12">Email</span>
-    //       <input
-    //         type="text"
-    //         value={email}
-    //         placeholder="Email"
-    //         className="input input-bordered w-full max-w-xs"
-    //         onChange={(e) => setEmail(e.target.value)}
-    //         required
-    //       />
-    //     </div>
-    //     <div>
-    //       <span className="badge p-8">Password</span>
-    //       <input
-    //         type="password"
-    //         value={password}
-    //         placeholder="Enter your password"
-    //         className="input input-bordered w-full max-w-xs"
-    //         onChange={(e) => setPassword(e.target.value)}
-    //         required
-    //       />
-    //     </div>
-    //     {error && <p style={{ color: "red" }}>{error}</p>}
-
-    //     <button type="submit" className="btn btn-accent m-4 ml-[200px]">
-    //       Login
-    //     </button>
-    //   </form>
-    // </div>
     <div className="pt-20 flex w-full justify-center items-center flex-col">
       {message && (
         <p className="text-[24px] text-white font-extrabold">{message}</p>
@@ -126,4 +93,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default Login;
