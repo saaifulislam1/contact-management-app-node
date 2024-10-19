@@ -42,7 +42,7 @@ const LoginPage = () => {
         document.cookie = `accessToken=${data.accessToken}; path=/; max-age=60`;
 
         // Redirect to dashboard or home page
-        router.push("/dashboard");
+        window.location.href = "/dashboard";
       } else {
         setError(data.message || "Login failed");
       }

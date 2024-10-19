@@ -9,16 +9,16 @@ const Header = () => {
   const [token, setToken] = useState<boolean>(false);
   const pathname = usePathname();
   const router = useRouter();
-
+  let storedToken;
   useEffect(() => {
-    const storedToken = localStorage.getItem("accessToken");
+    storedToken = localStorage.getItem("accessToken");
     if (storedToken) {
       setToken(true);
     } else {
       // Handle the case where the token is not present
       console.log("No access token found.");
     }
-  }, [token, setToken, router, window]);
+  }, [token, setToken, router, window, storedToken]);
 
   const navLinks = [
     { name: "Dashboard", href: "/dashboard" },
