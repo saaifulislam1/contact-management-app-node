@@ -18,7 +18,7 @@ const Header = () => {
       // Handle the case where the token is not present
       console.log("No access token found.");
     }
-  }, [token, setToken, router, window, storedToken]);
+  }, [token, setToken, router, storedToken]);
 
   const navLinks = [
     { name: "Dashboard", href: "/dashboard" },

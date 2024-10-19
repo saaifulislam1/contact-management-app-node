@@ -48,7 +48,7 @@ export default function DashBoard() {
       }
     };
     fetchUser();
-  }, [router, window, setUser]);
+  }, [router, setUser]);
   return (
     <div className="p-6 bg-base-200 min-h-screen">
       <div className="max-w-4xl mx-auto">
