@@ -1,22 +1,21 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 const Login = () => {
-  //   const searchParams = useSearchParams();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [message, setMessage] = useState("");
 
-  // Handling Message from Registration page Redirection
-  //   useEffect(() => {
-  //     if (typeof window !== "undefined") {
-  //       const successMessage = searchParams.get("message");
-  //       if (successMessage === "registration-success") {
-  //         setMessage("Registration successful! Please log in.");
-  //       }
-  //     }
-  //   }, [searchParams]);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const queryParams = new URLSearchParams(window.location.search);
+      const messageParam = queryParams.get("message");
 
+      if (messageParam === "registration-success") {
+        setMessage("Registration successful! Please log in.");
+      }
+    }
+  }, []);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
