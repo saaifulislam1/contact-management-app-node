@@ -40,7 +40,7 @@ const LoginPage = () => {
       if (response.ok) {
         // Store JWT token in localStorage
         localStorage.setItem("accessToken", data.accessToken);
-        document.cookie = `accessToken=${data.accessToken}; path=/; max-age=3600`;
+        document.cookie = `accessToken=${data.accessToken}; path=/; max-age=60`;
 
         // Redirect to dashboard or home page
         router.push("/dashboard");
