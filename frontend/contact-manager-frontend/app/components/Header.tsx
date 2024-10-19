@@ -1,15 +1,18 @@
 // components/Header.tsx
 "use client";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { redirect, usePathname, useRouter } from "next/navigation";
 
 const Header = () => {
   const pathname = usePathname();
+  const token = localStorage.getItem("accessToken");
+  const router = useRouter();
 
   const navLinks = [
     { name: "Dashboard", href: "/dashboard" },
     { name: "Contacts", href: "/contacts" },
     { name: "Login", href: "/auth/login" },
+    { name: "Register", href: "/auth/register" },
   ];
 
   return (
@@ -44,6 +47,17 @@ const Header = () => {
           </button>
         </div>
       </div>
+      {token && (
+        <button
+          onClick={() => {
+            localStorage.removeItem("accessToken");
+            router.push("/auth/login");
+          }}
+          className="btn btn-primary"
+        >
+          Logout
+        </button>
+      )}
     </div>
   );
 };

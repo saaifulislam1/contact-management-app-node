@@ -1,62 +1,56 @@
 "use client";
+import { redirect, useRouter } from "next/navigation";
+import React, { useState } from "react";
 
-import { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
-import { useRouter } from "next/navigation";
-
-const LoginPage = () => {
-  const searchParams = useSearchParams();
-  const router = useRouter();
+export default function Register() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
-  const [message, setMessage] = useState("");
-
-  // Handling Message from Registration page Redirection
-  useEffect(() => {
-    const successMessage = searchParams.get("message");
-
-    if (successMessage === "registration-success") {
-      setMessage("Registration successful! Please log in.");
-    }
-  }, [searchParams]);
-
+  const [username, setUserName] = useState<string>("");
+  const router = useRouter();
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
     try {
-      const response = await fetch("http://localhost:5001/api/users/login", {
+      const response = await fetch("http://localhost:5001/api/users/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email, password, username }),
       });
 
       const data = await response.json();
 
-      console.log(data.accessToken);
-
       if (response.ok) {
         // Store JWT token in localStorage
         localStorage.setItem("accessToken", data.accessToken);
-        document.cookie = `accessToken=${data.accessToken}; path=/; max-age=3600`;
-
         // Redirect to dashboard or home page
-        router.push("/dashboard");
+        // router.("/dashboard");
+        router.push("/auth/login?message=registration-success");
       } else {
-        setError(data.message || "Login failed");
+        setError(data.message || "Registration failed");
       }
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (err) {
       setError("Something went wrong");
     }
   };
-
   return (
-    // <div>
-    //   <br />
+    // <div className="pt-20 flex w-full justify-center items-center flex-col">
+    //   {/* <div>Register</div> */}
     //   <form onSubmit={handleSubmit} className="mt-[100px]">
+    //     <div>
+    //       <span className="badge p-12">Username</span>
+    //       <input
+    //         type="text"
+    //         value={username}
+    //         placeholder="Email"
+    //         className="input input-bordered w-full max-w-xs"
+    //         onChange={(e) => setUserName(e.target.value)}
+    //         required
+    //       />
+    //     </div>
     //     <div>
     //       <span className="badge p-12">Email</span>
     //       <input
@@ -87,10 +81,20 @@ const LoginPage = () => {
     //   </form>
     // </div>
     <div className="pt-20 flex w-full justify-center items-center flex-col">
-      {message && (
-        <p className="text-[24px] text-white font-extrabold">{message}</p>
-      )}
       <form onSubmit={handleSubmit} className="mt-12 w-full max-w-sm space-y-4">
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text font-semibold">Username</span>
+          </label>
+          <input
+            type="text"
+            value={username}
+            placeholder="Enter your username"
+            className="input input-bordered w-full"
+            onChange={(e) => setUserName(e.target.value)}
+            required
+          />
+        </div>
         <div className="form-control">
           <label className="label">
             <span className="label-text font-semibold">Email</span>
@@ -120,11 +124,9 @@ const LoginPage = () => {
         {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
 
         <button type="submit" className="btn btn-accent w-full mt-4">
-          Login
+          Register
         </button>
       </form>
     </div>
   );
-};
-
-export default LoginPage;
+}
