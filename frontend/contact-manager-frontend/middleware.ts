@@ -4,12 +4,14 @@ import type { NextRequest } from 'next/server';
 // Middleware to redirect logged-in users from login page to dashboard
 export function middleware(request: NextRequest) {
   const token = request.cookies.get('accessToken')?.value;
-// Fetch the token from cookies
-//   const token= localStorage.getItem('accessToken')
-console.log('FROM MIDDLEWARE', token)
 
-  // If token exists and the user is trying to access the login page, redirect to dashboard
-  if (token  && request.nextUrl.pathname === '/auth/login') {
+  console.log('FROM MIDDLEWARE', token); // Debugging log
+
+  // If a token exists and the user is trying to access the login page, redirect to dashboard
+  const isLoginPage = request.nextUrl.pathname === '/auth/login';
+  
+  if (token && isLoginPage) {
+    // Redirect to dashboard if already authenticated
     return NextResponse.redirect(new URL('/dashboard', request.url));
   }
 
@@ -20,4 +22,5 @@ console.log('FROM MIDDLEWARE', token)
 // Apply middleware only on the login page
 export const config = {
   matcher: ['/auth/login'],
+  
 };

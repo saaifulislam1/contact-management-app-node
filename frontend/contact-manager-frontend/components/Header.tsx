@@ -3,11 +3,22 @@
 import Link from "next/link";
 import Cookies from "js-cookie";
 import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const Header = () => {
+  const [token, setToken] = useState<boolean>(false);
   const pathname = usePathname();
-  const token = localStorage.getItem("accessToken");
   const router = useRouter();
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem("accessToken");
+    if (storedToken) {
+      setToken(true);
+    } else {
+      // Handle the case where the token is not present
+      console.log("No access token found.");
+    }
+  }, [token, setToken, router, window]);
 
   const navLinks = [
     { name: "Dashboard", href: "/dashboard" },
@@ -51,9 +62,11 @@ const Header = () => {
       {token && (
         <button
           onClick={() => {
+            console.log("clicked logout");
+            // router.push("/auth/login");
             localStorage.removeItem("accessToken");
             Cookies.remove("accessToken");
-            router.push("/auth/login");
+            window.location.href = "/auth/login";
           }}
           className="btn btn-primary"
         >

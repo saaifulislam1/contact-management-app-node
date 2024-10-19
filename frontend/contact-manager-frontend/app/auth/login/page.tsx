@@ -15,7 +15,6 @@ const LoginPage = () => {
   // Handling Message from Registration page Redirection
   useEffect(() => {
     const successMessage = searchParams.get("message");
-
     if (successMessage === "registration-success") {
       setMessage("Registration successful! Please log in.");
     }
